@@ -10,60 +10,82 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        .unit-content {
-            display: none;
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        .unit-content { display: none; }
         .unit-content.active {
             display: block;
+            animation: fadeIn 0.5s ease-in-out;
         }
         .nav-link.active {
             background-color: #1D4ED8;
             color: white;
-        }
-        .quiz-feedback {
-            display: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-top: 10px;
-        }
-        .quiz-feedback.correct {
-            display: block;
-            background-color: #D1FAE5;
-            color: #065F46;
-        }
-        .quiz-feedback.incorrect {
-            display: block;
-            background-color: #FEE2E2;
-            color: #991B1B;
-        }
-        .note-section {
-            padding: 1rem;
-        }
-        .note-title {
-            font-weight: 700;
-            font-size: 1.25rem; /* text-xl */
-            color: #1E40AF; /* text-blue-800 */
-            margin-bottom: 0.75rem;
-            border-bottom: 2px solid #DBEAFE;
-            padding-bottom: 0.5rem;
-        }
-        .sub-title {
             font-weight: 600;
-            font-size: 1.125rem; /* text-lg */
-            color: #1D4ED8; /* text-blue-700 */
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
         }
+        .quiz-feedback { display: none; padding: 8px 12px; border-radius: 6px; margin-top: 10px; }
+        .quiz-feedback.correct { display: block; background-color: #D1FAE5; color: #065F46; }
+        .quiz-feedback.incorrect { display: block; background-color: #FEE2E2; color: #991B1B; }
+
+        /* General Card Styling */
+        .note-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin-bottom: 1.5rem;
+            border-left-width: 5px;
+            transition: all 0.3s ease;
+        }
+        .note-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .note-section { padding: 1.5rem; }
+        .note-title { font-weight: 700; font-size: 1.25rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;}
+        .sub-title { font-weight: 600; font-size: 1.125rem; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+        .info-box { padding: 1rem; border-radius: 0.5rem; margin-top: 1rem; }
+        
+        /* Color Schemes */
+        .unit-style-1 { --theme-color: #3B82F6; --theme-bg: #EFF6FF; --theme-border: #BFDBFE; }
+        .unit-style-2 { --theme-color: #10B981; --theme-bg: #ECFDF5; --theme-border: #A7F3D0; }
+        .unit-style-3 { --theme-color: #8B5CF6; --theme-bg: #F5F3FF; --theme-border: #DDD6FE; }
+        .unit-style-4 { --theme-color: #14B8A6; --theme-bg: #F0FDFA; --theme-border: #99F6E4; }
+        .unit-style-5 { --theme-color: #6366F1; --theme-bg: #EEF2FF; --theme-border: #C7D2FE; }
+        .unit-style-6 { --theme-color: #F59E0B; --theme-bg: #FFFBEB; --theme-border: #FDE68A; }
+        .unit-style-7 { --theme-color: #EC4899; --theme-bg: #FCF1F7; --theme-border: #FBCFE8; }
+        .unit-style-8 { --theme-color: #EF4444; --theme-bg: #FEF2F2; --theme-border: #FECACA; }
+        .unit-style-9 { --theme-color: #06B6D4; --theme-bg: #ECFEFF; --theme-border: #A5F3FC; }
+        .unit-style-10 { --theme-color: #84CC16; --theme-bg: #F7FEE7; --theme-border: #D9F99D; }
+        .unit-style-11 { --theme-color: #F43F5E; --theme-bg: #FFF1F2; --theme-border: #FECDD3; }
+
+        .unit-content { border-color: var(--theme-color); }
+        .note-card { border-left-color: var(--theme-color); }
+        .note-title { color: var(--theme-color); }
+        .sub-title { color: var(--theme-color); }
+        .info-box { background-color: var(--theme-bg); border: 1px solid var(--theme-border); }
+        .quiz-check-btn { background-color: var(--theme-color); }
+        .quiz-check-btn:hover { filter: brightness(1.1); }
+        .quiz-container { background-color: var(--theme-bg); border: 1px solid var(--theme-border); }
+        .quiz-title { color: var(--theme-color); }
+
+        /* Timeline Style */
+        .timeline { border-left: 3px solid var(--theme-color); padding-left: 1.5rem; }
+        .timeline-item { position: relative; padding-bottom: 1.5rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -34px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background-color: white; border: 3px solid var(--theme-color); }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
 
     <div class="flex flex-col md:flex-row min-h-screen">
         <!-- Sidebar Navigation -->
         <nav class="w-full md:w-64 bg-white md:h-screen md:sticky top-0 shadow-lg">
-            <div class="p-6">
-                <h1 class="text-2xl font-bold text-blue-800">Nota Sejarah Tahun 4</h1>
-                <p class="text-sm text-gray-500">by Cikgu Sal Sabila</p>
+            <div class="p-6 text-center border-b">
+                <h1 class="text-xl font-bold text-gray-800">Nota Sejarah Tahun 4</h1>
+                <p class="text-sm text-gray-500 mt-1">oleh Cikgu Sal Sabila</p>
             </div>
             <ul class="mt-4" id="navigation">
                 <li><a href="#" class="nav-link active block py-3 px-6 text-gray-700 hover:bg-blue-500 hover:text-white transition duration-300" data-unit="1">Unit 1: Mengenali Sejarah</a></li>
@@ -84,714 +106,98 @@
         <main class="flex-1 p-4 md:p-8">
             <div id="content-area">
                 <!-- Unit 1 Content -->
-                <div id="unit-1" class="unit-content active">
+                <div id="unit-1" class="unit-content active unit-style-1">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 1: Mengenali Sejarah</h2>
-                    
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Pengertian Sejarah</h3>
-                            <p class="text-gray-700 mb-4">Sejarah ialah peristiwa yang benar-benar berlaku pada masa lalu. Ia melibatkan tindakan manusia, perubahan dan catatan sesuatu peristiwa. Sejarah memberikan iktibar dan teladan untuk kehidupan manusia.</p>
-                            <h4 class="sub-title">Pandangan Sejarawan:</h4>
-                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Herodotus:</b> Penceritaan tentang tindakan manusia dan sebab-sebab mereka melakukannya.</li>
-                                <li><b>Ibn Khaldun:</b> Membicarakan peradaban manusia dan perubahan yang berlaku.</li>
-                                <li><b>E.H. Carr:</b> Satu proses interaksi antara masa kini dengan masa lampau.</li>
-                                <li><b>Prof. Emeritus Tan Sri Dr. Khoo Kay Kim:</b> Merujuk peristiwa yang pernah atau sudah berlaku.</li>
-                                <li><b>Dr. Muhd Yusof bin Ibrahim:</b> Catatan atau rekod sesuatu peristiwa yang berlaku pada masa lalu.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Sumber Sejarah</h3>
-                            <p class="text-gray-700 font-semibold">Sumber Primer (Sumber Pertama):</p>
-                            <p class="text-gray-600 mb-2">Bahan dalam bentuk asal dan belum diolah. Penting sebagai bukti.</p>
-                            <ul class="list-disc list-inside text-gray-600">
-                                <li><b>Fosil:</b> Tinggalan tumbuhan atau haiwan yang terawet.</li>
-                                <li><b>Manuskrip:</b> Tulisan tangan seperti Hikayat Hang Tuah dan Sulalatus Salatin.</li>
-                                <li><b>Artifak:</b> Hasil ciptaan manusia seperti alat batu, tembikar, senjata dan duit syiling.</li>
-                                <li><b>Dokumen Rasmi:</b> Catatan tentang sesuatu peristiwa sejarah.</li>
-                            </ul>
-                            <p class="text-gray-700 font-semibold mt-4">Sumber Sekunder:</p>
-                            <p class="text-gray-600">Penulisan yang dihasilkan daripada sumber asal. Contoh: buku, majalah, risalah dan akhbar.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                           <h3 class="note-title">Kaedah Penyelidikan Sejarah</h3>
-                           <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Kaedah Arkeologi:</b> Proses mendapatkan maklumat daripada bahan tinggalan sejarah melalui gali cari (ekskavasi). Contohnya, fosil, tembikar dan rangka Perak Man di Lenggong, Perak. Terdapat juga arkeologi maritim (bawah air) untuk mengkaji tapak kapal karam.</li>
-                                <li><b>Kaedah Lisan:</b> Proses mendapatkan maklumat melalui temu bual dengan "orang sumber" (individu yang terlibat/melihat/mendengar peristiwa). Langkahnya: (1) Kenal pasti orang sumber & sedia soalan, (2) Temu bual & rakam, (3) Salin rakaman & buat penulisan.</li>
-                                <li><b>Kaedah Bertulis:</b> Proses mendapatkan maklumat daripada tulisan dan lakaran di dinding gua, kayu, batu, dan bahan bercetak. Langkahnya: (1) Kenal pasti sumber, (2) Kumpul sumber, (3) Tafsir maklumat, (4) Buat penulisan.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                     <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                           <h3 class="note-title">Ruang dan Masa</h3>
-                           <p class="text-gray-700">Sejarawan menggunakan urutan masa (kronologi) untuk mengkaji peristiwa. Konsep masa dibahagikan kepada dekad, abad dan alaf. Ia juga dilihat mengikut zaman Sebelum Masihi (SM) dan Masihi (M).</p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-1">
-                                <li><b>Dekad:</b> Tempoh 10 tahun.</li>
-                                <li><b>Abad:</b> Tempoh 100 tahun.</li>
-                                <li><b>Alaf:</b> Tempoh 1000 tahun.</li>
-                                <li><b>SM:</b> Zaman sebelum kelahiran Nabi Isa.</li>
-                                <li><b>M:</b> Zaman selepas kelahiran Nabi Isa.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                           <h3 class="note-title">Sebab dan Akibat dalam Peristiwa Sejarah</h3>
-                           <p class="text-gray-700">Setiap peristiwa sejarah mempunyai sebab (mengapa ia berlaku) dan akibat (kesan peristiwa tersebut). Memahaminya membolehkan kita mengambil iktibar dan pengajaran.</p>
-                           <p class="sub-title">Contoh: Kemerdekaan Negara</p>
-                           <ul class="list-disc list-inside mt-2 text-gray-600 space-y-1">
-                               <li><b>Sebab:</b> Tanah air kita dijajah oleh pihak British.</li>
-                               <li><b>Akibat:</b> Rakyat berjuang membebaskan tanah air sehingga berjaya mencapai kemerdekaan pada 31 Ogos 1957.</li>
-                           </ul>
-                        </div>
-                    </div>
-
-                    <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Siapakah sejarawan yang mengatakan sejarah ialah "satu proses interaksi antara masa kini dengan masa lampau"?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_1" value="incorrect"> Herodotus</label><label class="block"><input type="radio" name="q1_1" value="correct"> E.H. Carr</label><label class="block"><input type="radio" name="q1_1" value="incorrect"> Ibn Khaldun</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Antara berikut, yang manakah contoh sumber primer?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_2" value="incorrect"> Buku Teks Sejarah</label><label class="block"><input type="radio" name="q1_2" value="incorrect"> Majalah</label><label class="block"><input type="radio" name="q1_2" value="correct"> Artifak</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Proses mendapatkan maklumat daripada bahan tinggalan sejarah melalui proses gali cari dikenali sebagai kaedah...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_3" value="correct"> Arkeologi</label><label class="block"><input type="radio" name="q1_3" value="incorrect"> Lisan</label><label class="block"><input type="radio" name="q1_3" value="incorrect"> Bertulis</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Tempoh masa selama 100 tahun dikenali sebagai...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_4" value="incorrect"> Dekad</label><label class="block"><input type="radio" name="q1_4" value="correct"> Abad</label><label class="block"><input type="radio" name="q1_4" value="incorrect"> Alaf</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Individu yang ditemu bual untuk mendapatkan maklumat sejarah dikenali sebagai...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_5" value="incorrect"> Sejarawan</label><label class="block"><input type="radio" name="q1_5" value="correct"> Orang Sumber</label><label class="block"><input type="radio" name="q1_5" value="incorrect"> Arkeologis</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Pengertian Sejarah</h3><p class="text-gray-700 mb-4">Sejarah ialah peristiwa yang benar-benar berlaku pada masa lalu. Ia memberikan iktibar dan teladan untuk kehidupan manusia.</p><p class="sub-title">Pandangan Sejarawan:</p><ul class="list-disc list-inside mt-2 text-gray-600 space-y-2"><li><b>Herodotus:</b> Penceritaan tentang tindakan manusia dan sebab-sebab mereka melakukannya.</li><li><b>Ibn Khaldun:</b> Membicarakan peradaban manusia dan perubahan yang berlaku.</li><li><b>E.H. Carr:</b> Satu proses interaksi antara masa kini dengan masa lampau.</li><li><b>Prof. Emeritus Tan Sri Dr. Khoo Kay Kim:</b> Merujuk peristiwa yang pernah atau sudah berlaku.</li><li><b>Dr. Muhd Yusof bin Ibrahim:</b> Catatan atau rekod sesuatu peristiwa yang berlaku pada masa lalu.</li></ul></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>Sumber Sejarah</h3><p class="sub-title">Sumber Primer (Sumber Pertama):</p><p class="text-gray-600 mb-2">Bahan dalam bentuk asal dan belum diolah. Contoh: Fosil, Artifak, Manuskrip.</p><p class="sub-title mt-4">Sumber Sekunder:</p><p class="text-gray-600">Penulisan yang dihasilkan daripada sumber asal. Contoh: buku, majalah, akhbar.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Kaedah Penyelidikan Sejarah</h3><ul class="list-disc list-inside mt-2 text-gray-600 space-y-2"><li><b>Kaedah Arkeologi:</b> Mendapatkan maklumat dari bahan tinggalan sejarah melalui gali cari.</li><li><b>Kaedah Lisan:</b> Mendapatkan maklumat melalui temu bual dengan "orang sumber".</li><li><b>Kaedah Bertulis:</b> Mendapatkan maklumat daripada tulisan dan lakaran.</li></ul></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>Ruang dan Masa</h3><p class="text-gray-700">Sejarawan menggunakan kronologi. Konsep masa dibahagikan kepada:</p><div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4"><div class="info-box"><b>Dekad:</b> 10 tahun.</div><div class="info-box"><b>Abad:</b> 100 tahun.</div><div class="info-box"><b>Alaf:</b> 1000 tahun.</div></div></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>Sebab dan Akibat</h3><p class="text-gray-700">Setiap peristiwa ada sebab (mengapa) dan akibat (kesan).</p><div class="info-box"><p class="sub-title">Contoh: Kemerdekaan Negara</p><ul class="list-disc list-inside mt-2 text-gray-600 space-y-1"><li><b>Sebab:</b> Tanah air dijajah oleh British.</li><li><b>Akibat:</b> Rakyat berjuang hingga mencapai kemerdekaan.</li></ul></div></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Siapakah sejarawan yang mengatakan sejarah ialah "satu proses interaksi antara masa kini dengan masa lampau"?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_1" value="incorrect"> Herodotus</label><label class="block"><input type="radio" name="q1_1" value="correct"> E.H. Carr</label><label class="block"><input type="radio" name="q1_1" value="incorrect"> Ibn Khaldun</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Antara berikut, yang manakah contoh sumber primer?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_2" value="incorrect"> Buku Teks Sejarah</label><label class="block"><input type="radio" name="q1_2" value="incorrect"> Majalah</label><label class="block"><input type="radio" name="q1_2" value="correct"> Artifak</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Proses mendapatkan maklumat daripada bahan tinggalan sejarah melalui proses gali cari dikenali sebagai kaedah...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_3" value="correct"> Arkeologi</label><label class="block"><input type="radio" name="q1_3" value="incorrect"> Lisan</label><label class="block"><input type="radio" name="q1_3" value="incorrect"> Bertulis</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Tempoh masa selama 100 tahun dikenali sebagai...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_4" value="incorrect"> Dekad</label><label class="block"><input type="radio" name="q1_4" value="correct"> Abad</label><label class="block"><input type="radio" name="q1_4" value="incorrect"> Alaf</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Individu yang ditemu bual untuk mendapatkan maklumat sejarah dikenali sebagai...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q1_5" value="incorrect"> Sejarawan</label><label class="block"><input type="radio" name="q1_5" value="correct"> Orang Sumber</label><label class="block"><input type="radio" name="q1_5" value="incorrect"> Arkeologis</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
 
                 <!-- Unit 2 Content -->
-                <div id="unit-2" class="unit-content">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 2: Saya dan Keluarga</h2>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Biodata Diri Saya</h3>
-                            <p class="text-gray-700">Biodata diri merujuk maklumat diri seperti nama, jantina, nama ibu bapa, tarikh dan tempat kelahiran. Maklumat ini terdapat dalam sijil kelahiran, MyKid dan kad pengenalan diri sekolah. Dokumen ini penting untuk urusan rasmi seperti pendaftaran sekolah.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Keluarga Saya</h3>
-                            <p class="text-gray-700">Kita harus menghargai setiap anggota keluarga untuk melahirkan keluarga bahagia.</p>
-                            <p class="sub-title">Keluarga Asas:</p>
-                            <p class="text-gray-600 mb-2">Terdiri daripada bapa, ibu dan anak-anak.</p>
-                            <p class="sub-title">Keluarga Kembangan:</p>
-                            <p class="text-gray-600">Terdiri daripada keluarga asas, datuk dan nenek. Kita perlu mengamalkan adab yang baik seperti bersalam dan menggunakan panggilan sopan.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Peranan Anggota Keluarga</h3>
-                            <p class="text-gray-700">Setiap anggota keluarga mempunyai peranan dan tanggungjawab masing-masing untuk mewujudkan keluarga harmoni.</p>
-                            <p class="sub-title">Peranan Ibu Bapa:</p>
-                            <ul class="list-disc list-inside text-gray-600">
-                                <li>Menyara keluarga & memberikan kasih sayang.</li>
-                                <li>Menjaga keselamatan & menyediakan segala keperluan asas.</li>
-                                <li>Menjadi contoh teladan yang baik & memberikan pendidikan yang sempurna.</li>
-                            </ul>
-                            <p class="sub-title mt-4">Peranan Anak-anak:</p>
-                            <ul class="list-disc list-inside text-gray-600">
-                                <li>Menjaga nama baik keluarga & membantu ahli keluarga.</li>
-                                <li>Saling menghormati & mendengar nasihat.</li>
-                                <li>Belajar bersungguh-sungguh.</li>
-                            </ul>
-                        </div>
-                    </div>
-                     <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Perkembangan Diri Saya</h3>
-                            <p class="text-gray-700">Perkembangan diri boleh digambarkan dalam bentuk garis masa untuk melihat perubahan dan peristiwa sejarah dalam hidup kita.</p>
-                            <p class="sub-title">Contoh Garis Masa:</p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600">
-                                <li><b>2010:</b> Saya dilahirkan.</li>
-                                <li><b>2014:</b> Berpindah ke Kuala Lumpur.</li>
-                                <li><b>2016:</b> Datuk dan nenek menunaikan fardu haji.</li>
-                                <li><b>2017:</b> Saya memasuki Tahun 1.</li>
-                                <li><b>2020:</b> Saya belajar di Tahun 4.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Keluarga yang terdiri daripada bapa, ibu, anak-anak, datuk dan nenek dikenali sebagai...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_1" value="incorrect"> Keluarga Asas</label><label class="block"><input type="radio" name="q2_1" value="incorrect"> Keluarga Bahagia</label><label class="block"><input type="radio" name="q2_1" value="correct"> Keluarga Kembangan</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Apakah definisi keluarga asas?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_2" value="correct"> Keluarga yang terdiri daripada bapa, ibu dan anak-anak.</label><label class="block"><input type="radio" name="q2_2" value="incorrect"> Keluarga yang terdiri daripada datuk dan nenek sahaja.</label><label class="block"><input type="radio" name="q2_2" value="incorrect"> Keluarga yang tinggal di bandar.</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Manakah antara berikut BUKAN peranan seorang anak?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_3" value="incorrect"> Menjaga nama baik keluarga.</label><label class="block"><input type="radio" name="q2_3" value="correct"> Menyara keluarga.</label><label class="block"><input type="radio" name="q2_3" value="incorrect"> Belajar bersungguh-sungguh.</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Di manakah maklumat biodata diri boleh didapati?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_4" value="correct"> Sijil kelahiran dan MyKid</label><label class="block"><input type="radio" name="q2_4" value="incorrect"> Buku latihan sekolah</label><label class="block"><input type="radio" name="q2_4" value="incorrect"> Resit pembelian barang</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Apakah kegunaan garis masa dalam konteks perkembangan diri?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_5" value="incorrect"> Untuk menunjukkan markah peperiksaan.</label><label class="block"><input type="radio" name="q2_5" value="correct"> Untuk melihat perkembangan diri dan peristiwa sejarah hidup.</label><label class="block"><input type="radio" name="q2_5" value="incorrect"> Untuk mencatat senarai kawan-kawan.</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                <div id="unit-2" class="unit-content unit-style-2">
+                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 2: Saya dan Keluarga</h2>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Biodata Diri Saya</h3><p class="text-gray-700">Biodata diri ialah maklumat diri (nama, jantina, tarikh lahir) dalam dokumen rasmi seperti Sijil Kelahiran dan MyKid.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9H2v10a2 2 0 0 0 2 2h10v-1"></path><path d="M19 15H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v4"></path><path d="m21 17-2-2-2 2"></path><path d="m15 17-2-2-2 2"></path></svg>Keluarga Saya</h3><p class="sub-title">Keluarga Asas:</p><p class="text-gray-600 mb-2">Terdiri daripada bapa, ibu dan anak-anak.</p><p class="sub-title">Keluarga Kembangan:</p><p class="text-gray-600">Terdiri daripada keluarga asas, datuk dan nenek.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>Peranan Anggota Keluarga</h3><p class="sub-title">Peranan Ibu Bapa:</p><ul class="list-disc list-inside text-gray-600"><li>Menyara keluarga, memberi kasih sayang & menjaga keselamatan.</li></ul><p class="sub-title mt-4">Peranan Anak-anak:</p><ul class="list-disc list-inside text-gray-600"><li>Menjaga nama baik keluarga, menghormati & belajar bersungguh-sungguh.</li></ul></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"></path><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>Perkembangan Diri Saya (Garis Masa)</h3><p class="text-gray-700">Garis masa menunjukkan peristiwa penting dalam hidup kita.</p><div class="mt-4 timeline"><div class="timeline-item"><b>2010:</b> Saya dilahirkan.</div><div class="timeline-item"><b>2014:</b> Berpindah ke Kuala Lumpur.</div><div class="timeline-item"><b>2017:</b> Saya memasuki Tahun 1.</div><div class="timeline-item" style="padding-bottom: 0;"><b>2020:</b> Saya belajar di Tahun 4.</div></div></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Keluarga yang terdiri daripada bapa, ibu, anak-anak, datuk dan nenek dikenali sebagai...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_1" value="incorrect"> Keluarga Asas</label><label class="block"><input type="radio" name="q2_1" value="incorrect"> Keluarga Bahagia</label><label class="block"><input type="radio" name="q2_1" value="correct"> Keluarga Kembangan</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Apakah definisi keluarga asas?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_2" value="correct"> Keluarga yang terdiri daripada bapa, ibu dan anak-anak.</label><label class="block"><input type="radio" name="q2_2" value="incorrect"> Keluarga yang terdiri daripada datuk dan nenek sahaja.</label><label class="block"><input type="radio" name="q2_2" value="incorrect"> Keluarga yang tinggal di bandar.</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Manakah antara berikut BUKAN peranan seorang anak?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_3" value="incorrect"> Menjaga nama baik keluarga.</label><label class="block"><input type="radio" name="q2_3" value="correct"> Menyara keluarga.</label><label class="block"><input type="radio" name="q2_3" value="incorrect"> Belajar bersungguh-sungguh.</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Di manakah maklumat biodata diri boleh didapati?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_4" value="correct"> Sijil kelahiran dan MyKid</label><label class="block"><input type="radio" name="q2_4" value="incorrect"> Buku latihan sekolah</label><label class="block"><input type="radio" name="q2_4" value="incorrect"> Resit pembelian barang</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Apakah kegunaan garis masa dalam konteks perkembangan diri?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q2_5" value="incorrect"> Untuk menunjukkan markah peperiksaan.</label><label class="block"><input type="radio" name="q2_5" value="correct"> Untuk melihat perkembangan diri dan peristiwa sejarah hidup.</label><label class="block"><input type="radio" name="q2_5" value="incorrect"> Untuk mencatat senarai kawan-kawan.</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
-
+                
                 <!-- Unit 3 Content -->
-                <div id="unit-3" class="unit-content">
+                <div id="unit-3" class="unit-content unit-style-3">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 3: Sejarah Sekolah</h2>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Nama dan Alamat Sekolah</h3>
-                            <p class="text-gray-700">Setiap sekolah mempunyai nama sebagai identiti, biasanya diambil sempena nama tempat, jalan atau tokoh terkenal. Alamat sekolah (nama jalan, poskod, negeri) penting untuk mencari lokasi. Terdapat pelbagai aliran sekolah di negara kita:</p>
-                             <ul class="list-disc list-inside text-gray-600">
-                                <li><b>Sekolah Kebangsaan (SK):</b> Menggunakan Bahasa Melayu sebagai bahasa pengantar.</li>
-                                <li><b>Sekolah Jenis Kebangsaan (SJK):</b> Menggunakan Bahasa Cina atau Bahasa Tamil sebagai bahasa pengantar.</li>
-                             </ul>
-                        </div>
-                    </div>
-                     <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Lokasi dan Sejarah Sekolah</h3>
-                            <p class="text-gray-700">Lokasi sekolah boleh dikenal pasti melalui mercu tanda (objek mudah dikenal pasti seperti bangunan atau pokok). Sejarah sekolah merujuk kepada penubuhan dan peristiwa penting. Mengetahui sejarah sekolah boleh dijadikan panduan dan memupuk rasa bangga.</p>
-                        </div>
-                    </div>
-                     <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Identiti dan Organisasi Sekolah</h3>
-                             <p class="sub-title">Identiti Sekolah:</p>
-                            <p class="text-gray-600 mb-2">Terdiri daripada lencana, lagu dan bendera sekolah. Identiti ini mesti dihormati dan menjadi kebanggaan setiap warga sekolah.</p>
-                            <p class="sub-title mt-4">Organisasi Sekolah:</p>
-                            <p class="text-gray-600">Pengurusan pentadbiran sekolah diwujudkan agar lebih teratur. Ia diterajui oleh Guru Besar dan dibantu oleh Penolong Kanan Pentadbiran, Penolong Kanan Hal Ehwal Murid (HEM) dan Penolong Kanan Kokurikulum. Sebagai murid, kita perlu menghormati dan mematuhi arahan mereka.</p>
-                        </div>
-                    </div>
-                    <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Siapakah yang mengetuai pentadbiran sesebuah sekolah?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_1" value="incorrect"> Penolong Kanan HEM</label><label class="block"><input type="radio" name="q3_1" value="correct"> Guru Besar</label><label class="block"><input type="radio" name="q3_1" value="incorrect"> Guru Disiplin</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Antara berikut, yang manakah BUKAN identiti sekolah?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_2" value="incorrect"> Lencana</label><label class="block"><input type="radio" name="q3_2" value="correct"> Nama guru</label><label class="block"><input type="radio" name="q3_2" value="incorrect"> Lagu sekolah</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Siapakah yang membantu Guru Besar dalam hal ehwal murid?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_3" value="correct"> Penolong Kanan Hal Ehwal Murid</label><label class="block"><input type="radio" name="q3_3" value="incorrect"> Penolong Kanan Pentadbiran</label><label class="block"><input type="radio" name="q3_3" value="incorrect"> Penolong Kanan Kokurikulum</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Apakah yang dimaksudkan dengan 'mercu tanda'?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_4" value="incorrect"> Alamat sekolah yang lengkap</label><label class="block"><input type="radio" name="q3_4" value="correct"> Sesuatu objek yang mudah dikenal pasti sebagai panduan lokasi</label><label class="block"><input type="radio" name="q3_4" value="incorrect"> Sejarah penubuhan sekolah</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Sekolah Jenis Kebangsaan (SJK) menggunakan bahasa pengantar...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_5" value="incorrect"> Bahasa Melayu sahaja</label><label class="block"><input type="radio" name="q3_5" value="correct"> Bahasa Cina atau Bahasa Tamil</label><label class="block"><input type="radio" name="q3_5" value="incorrect"> Bahasa Inggeris</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10.1V16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.9M14 2 2 8l12 6 10-6-12-6z"></path><path d="M2 8v8"></path></svg>Nama dan Alamat Sekolah</h3><p class="text-gray-700">Setiap sekolah ada nama dan alamat sebagai identiti. Nama sekolah biasanya diambil sempena nama tempat, jalan atau tokoh.</p><div class="info-box"><p class="sub-title">Aliran Sekolah:</p><ul class="list-disc list-inside text-gray-600"><li><b>Sekolah Kebangsaan (SK):</b> Bahasa pengantar ialah Bahasa Melayu.</li><li><b>Sekolah Jenis Kebangsaan (SJK):</b> Bahasa pengantar ialah Bahasa Cina atau Tamil.</li></ul></div></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>Sejarah dan Identiti Sekolah</h3><p class="sub-title">Sejarah Sekolah:</p><p class="text-gray-600">Merujuk penubuhan dan peristiwa penting sekolah. Mengetahuinya akan memupuk rasa bangga.</p><p class="sub-title mt-4">Identiti Sekolah:</p><p class="text-gray-600">Lencana, lagu dan bendera sekolah. Kita mesti menghormati dan berbangga dengannya.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Organisasi Sekolah</h3><p class="text-gray-700">Pengurusan sekolah yang teratur memastikan kecemerlangan. Ia diterajui oleh:</p><ul class="list-disc list-inside mt-2 text-gray-600"><li><b>Guru Besar:</b> Ketua pentadbir.</li><li><b>Penolong Kanan Pentadbiran:</b> Membantu urusan akademik.</li><li><b>Penolong Kanan Hal Ehwal Murid (HEM):</b> Menjaga kebajikan murid.</li><li><b>Penolong Kanan Kokurikulum:</b> Mengurus aktiviti luar bilik darjah.</li></ul></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Siapakah yang mengetuai pentadbiran sesebuah sekolah?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_1" value="incorrect"> Penolong Kanan HEM</label><label class="block"><input type="radio" name="q3_1" value="correct"> Guru Besar</label><label class="block"><input type="radio" name="q3_1" value="incorrect"> Guru Disiplin</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Antara berikut, yang manakah BUKAN identiti sekolah?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_2" value="incorrect"> Lencana</label><label class="block"><input type="radio" name="q3_2" value="correct"> Nama guru</label><label class="block"><input type="radio" name="q3_2" value="incorrect"> Lagu sekolah</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Siapakah yang membantu Guru Besar dalam hal ehwal murid?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_3" value="correct"> Penolong Kanan Hal Ehwal Murid</label><label class="block"><input type="radio" name="q3_3" value="incorrect"> Penolong Kanan Pentadbiran</label><label class="block"><input type="radio" name="q3_3" value="incorrect"> Penolong Kanan Kokurikulum</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Apakah yang dimaksudkan dengan 'mercu tanda'?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_4" value="incorrect"> Alamat sekolah yang lengkap</label><label class="block"><input type="radio" name="q3_4" value="correct"> Sesuatu objek yang mudah dikenal pasti sebagai panduan lokasi</label><label class="block"><input type="radio" name="q3_4" value="incorrect"> Sejarah penubuhan sekolah</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Sekolah Jenis Kebangsaan (SJK) menggunakan bahasa pengantar...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q3_5" value="incorrect"> Bahasa Melayu sahaja</label><label class="block"><input type="radio" name="q3_5" value="correct"> Bahasa Cina atau Bahasa Tamil</label><label class="block"><input type="radio" name="q3_5" value="incorrect"> Bahasa Inggeris</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
 
                 <!-- Unit 4 Content -->
-                <div id="unit-4" class="unit-content">
+                <div id="unit-4" class="unit-content unit-style-4">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 4: Sejarah Tempat Tinggal</h2>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Kawasan Tempat Tinggal Saya</h3>
-                             <p class="text-gray-700">Setiap kawasan tempat tinggal mempunyai alamat (nombor rumah, nama jalan, poskod, bandar, negeri). Kawasan tempat tinggal berbeza-beza mengikut bentuk muka bumi seperti tanah tinggi, tanah pamah, pesisir laut dan pinggir sungai. Bentuk muka bumi ini mempengaruhi kegiatan masyarakat dan mempunyai keunikannya yang tersendiri.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Sejarah dan Tokoh Setempat</h3>
-                             <p class="sub-title">Sejarah Tempat Tinggal:</p>
-                            <p class="text-gray-600 mb-2">Menceritakan asal usul nama tempat dan peristiwa penting yang pernah berlaku. Memahami sejarahnya akan mewujudkan perasaan bangga dan menghargai tempat tinggal.</p>
-                            <p class="sub-title mt-4">Tokoh Setempat:</p>
-                            <p class="text-gray-600">Individu yang banyak menyumbang jasa dan bakti kepada komuniti. Mereka dikenali oleh penduduk setempat. Jasa mereka haruslah dihargai dan menjadi teladan untuk kesejahteraan dan kemajuan negara.</p>
-                        </div>
-                    </div>
-                    <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                         <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Individu yang banyak menyumbang jasa dan bakti kepada komuniti dikenali sebagai...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_1" value="correct"> Tokoh Setempat</label><label class="block"><input type="radio" name="q4_1" value="incorrect"> Orang Kaya</label><label class="block"><input type="radio" name="q4_1" value="incorrect"> Penduduk Asal</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Apakah yang mempengaruhi kegiatan masyarakat di sesuatu tempat tinggal?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_2" value="incorrect"> Warna bangunan</label><label class="block"><input type="radio" name="q4_2" value="correct"> Bentuk muka bumi</label><label class="block"><input type="radio" name="q4_2" value="incorrect"> Jumlah penduduk</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Apakah yang diceritakan dalam sejarah tempat tinggal?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_3" value="incorrect"> Jenis makanan yang popular</label><label class="block"><input type="radio" name="q4_3" value="incorrect"> Bilangan sekolah yang ada</label><label class="block"><input type="radio" name="q4_3" value="correct"> Asal usul nama tempat dan peristiwa penting</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Manakah antara berikut BUKAN contoh bentuk muka bumi?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_4" value="incorrect"> Tanah tinggi</label><label class="block"><input type="radio" name="q4_4" value="correct"> Bangunan pencakar langit</label><label class="block"><input type="radio" name="q4_4" value="incorrect"> Pesisir laut</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Mengapakah jasa tokoh setempat perlu dihargai?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_5" value="correct"> Untuk menjadi teladan kepada generasi akan datang.</label><label class="block"><input type="radio" name="q4_5" value="incorrect"> Supaya mereka menjadi terkenal.</label><label class="block"><input type="radio" name="q4_5" value="incorrect"> Kerana mereka memiliki banyak harta.</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unit 5 Content -->
-                <div id="unit-5" class="unit-content">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 5: Zaman Air Batu</h2>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Kenali Zaman Air Batu</h3>
-                             <p class="text-gray-700">Zaman Air Batu ialah zaman bumi dilitupi oleh air batu yang tebal disebabkan oleh penurunan suhu yang ketara. Zaman Air Batu Akhir berlaku pada Kala Kuaterner.</p>
-                             <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Epok Pleistosen (2.5 juta - 11,700 tahun dahulu):</b> Suhu bumi rendah dan banyak kawasan dilitupi air batu. Manusia mula tahu cara membuat api. Haiwan seperti Mamot, Sloth dan Harimau bertaring lengkung hidup pada zaman ini.</li>
-                                <li><b>Epok Holosen (11,700 tahun dahulu - kini):</b> Suhu bumi mula meningkat. Air batu mula mencair dan paras air laut meningkat.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Perubahan dan Kesan Zaman Air Batu Akhir</h3>
-                            <ul class="list-disc list-inside text-gray-600 space-y-2">
-                                <li><b>Bentuk Muka Bumi:</b> Ais mencair dan melimpah ke kawasan rendah membentuk tasik dan laut. Paras air laut meningkat sehingga 100 meter.</li>
-                                 <li><b>Iklim:</b> Iklim berubah daripada terlalu sejuk kepada sederhana sejuk.</li>
-                                <li><b>Kepupusan Haiwan:</b> Haiwan seperti mamot dan harimau bertaring lengkung pupus akibat perubahan suhu.</li>
-                                <li><b>Penempatan Manusia:</b> Manusia bergerak keluar ke kawasan yang lebih panas untuk membina petempatan baharu.</li>
-                                <li><b>Kesan di Asia Tenggara:</b> Kenaikan paras air laut di Pentas Sunda (kawasan tanah luas) menenggelamkan kawasan rendah, membentuk sungai dan tasik, serta menjadi tempat tinggal baharu manusia dan haiwan.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Apakah haiwan yang telah pupus akibat perubahan suhu pada Zaman Air Batu Akhir?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_1" value="incorrect"> Dinosaur</label><label class="block"><input type="radio" name="q5_1" value="correct"> Mamot</label><label class="block"><input type="radio" name="q5_1" value="incorrect"> Gajah</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Zaman Air Batu Akhir terbahagi kepada dua epok, iaitu...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_2" value="correct"> Epok Pleistosen dan Epok Holosen</label><label class="block"><input type="radio" name="q5_2" value="incorrect"> Zaman Logam dan Zaman Batu</label><label class="block"><input type="radio" name="q5_2" value="incorrect"> Zaman Kuno dan Zaman Moden</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Apakah yang berlaku kepada paras air laut semasa Epok Holosen?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_3" value="incorrect"> Menurun</label><label class="block"><input type="radio" name="q5_3" value="correct"> Meningkat</label><label class="block"><input type="radio" name="q5_3" value="incorrect"> Tidak berubah</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Kawasan tanah luas di Asia Tenggara yang menghubungkan daratan dengan kepulauan dikenali sebagai...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_4" value="correct"> Pentas Sunda</label><label class="block"><input type="radio" name="q5_4" value="incorrect"> Pentas Asia</label><label class="block"><input type="radio" name="q5_4" value="incorrect"> Pentas Lautan</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Mengapakah manusia pada Zaman Air Batu Akhir bergerak ke tempat lain?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_5" value="incorrect"> Untuk mencari air batu</label><label class="block"><input type="radio" name="q5_5" value="incorrect"> Kerana berlaku peperangan</label><label class="block"><input type="radio" name="q5_5" value="correct"> Untuk mencari kawasan yang lebih panas</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"></path><path d="M9 22V12h6v10M2 10.6L12 2l10 8.6"></path></svg>Kawasan Tempat Tinggal</h3><p class="text-gray-700">Kawasan tempat tinggal mempunyai alamat dan bentuk muka bumi yang berbeza seperti tanah tinggi, tanah pamah, pesisir laut dan pinggir sungai. Ini mempengaruhi kegiatan masyarakat.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M18.5 14a4.46 4.46 0 0 0-2.33 1.04l-1.39 1.04A2.23 2.23 0 0 0 14 18.23V21"></path><path d="M22 17.5a4.5 4.5 0 0 0-4.5-4.5c-2.22 0-4 1.78-4.5 4"></path></svg>Sejarah dan Tokoh Setempat</h3><p class="sub-title">Sejarah Tempat Tinggal:</p><p class="text-gray-600">Menceritakan asal usul nama tempat dan peristiwa penting.</p><p class="sub-title mt-4">Tokoh Setempat:</p><p class="text-gray-600">Individu yang banyak berjasa kepada komuniti. Jasa mereka harus dihargai dan menjadi teladan.</p></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Individu yang banyak menyumbang jasa dan bakti kepada komuniti dikenali sebagai...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_1" value="correct"> Tokoh Setempat</label><label class="block"><input type="radio" name="q4_1" value="incorrect"> Orang Kaya</label><label class="block"><input type="radio" name="q4_1" value="incorrect"> Penduduk Asal</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Apakah yang mempengaruhi kegiatan masyarakat di sesuatu tempat tinggal?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_2" value="incorrect"> Warna bangunan</label><label class="block"><input type="radio" name="q4_2" value="correct"> Bentuk muka bumi</label><label class="block"><input type="radio" name="q4_2" value="incorrect"> Jumlah penduduk</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Apakah yang diceritakan dalam sejarah tempat tinggal?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_3" value="incorrect"> Jenis makanan yang popular</label><label class="block"><input type="radio" name="q4_3" value="incorrect"> Bilangan sekolah yang ada</label><label class="block"><input type="radio" name="q4_3" value="correct"> Asal usul nama tempat dan peristiwa penting</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Manakah antara berikut BUKAN contoh bentuk muka bumi?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_4" value="incorrect"> Tanah tinggi</label><label class="block"><input type="radio" name="q4_4" value="correct"> Bangunan pencakar langit</label><label class="block"><input type="radio" name="q4_4" value="incorrect"> Pesisir laut</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Mengapakah jasa tokoh setempat perlu dihargai?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q4_5" value="correct"> Untuk menjadi teladan kepada generasi akan datang.</label><label class="block"><input type="radio" name="q4_5" value="incorrect"> Supaya mereka menjadi terkenal.</label><label class="block"><input type="radio" name="q4_5" value="incorrect"> Kerana mereka memiliki banyak harta.</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
                 
+                <!-- Unit 5 Content -->
+                <div id="unit-5" class="unit-content unit-style-5">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 5: Zaman Air Batu</h2>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 15.42 13a5 5 0 0 0-4-1.92A5 5 0 0 0 8 13a5 5 0 0 0-4.42 4.58"></path><path d="M10.29 13.71C11.5 12.65 12 11.23 12 10c0-2.21-1.79-4-4-4S4 7.79 4 10c0 1.23.5 2.5 1.71 3.71"></path><path d="M20 10c0-2.21-1.79-4-4-4s-4 1.79-4 4c0 1.23.5 2.5 1.71 3.71"></path></svg>Kenali Zaman Air Batu</h3><p class="text-gray-700">Zaman bumi dilitupi air batu tebal kerana suhu menurun. Zaman Air Batu Akhir terbahagi kepada:</p><div class="info-box mt-4"><p class="sub-title">Epok Pleistosen (2.5 juta - 11,700 tahun dahulu):</p><p>Suhu bumi rendah, dilitupi air batu. Haiwan seperti Mamot & Harimau Bertaring Lengkung hidup.</p></div><div class="info-box"><p class="sub-title">Epok Holosen (11,700 tahun dahulu - kini):</p><p>Suhu bumi meningkat, air batu mencair, paras air laut meningkat.</p></div></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 12H19c-1.38-3.58-5.08-6-9-6s-7.62 2.42-9 6H2.5"></path><path d="M2.5 12H5c1.38 3.58 5.08 6 9 6s7.62-2.42 9-6h2.5"></path><circle cx="12" cy="12" r="1"></circle><path d="M12 2.5V5"></path><path d="M12 19v2.5"></path><path d="m19.6 4.4-1.8 1.8"></path><path d="m6.2 17.8 1.8 1.8"></path><path d="m4.4 4.4 1.8 1.8"></path><path d="m17.8 17.8-1.8 1.8"></path></svg>Perubahan & Kesan Zaman Air Batu Akhir</h3><ul class="list-disc list-inside text-gray-600 space-y-2"><li><b>Bentuk Muka Bumi:</b> Ais mencair membentuk tasik dan laut. Paras air laut naik.</li><li><b>Iklim:</b> Berubah dari terlalu sejuk kepada sederhana sejuk.</li><li><b>Kepupusan Haiwan:</b> Haiwan seperti mamot pupus akibat perubahan suhu.</li><li><b>Penempatan Manusia:</b> Manusia bergerak ke kawasan lebih panas.</li><li><b>Asia Tenggara:</b> Kenaikan paras air laut di Pentas Sunda membentuk sungai dan tasik.</li></ul></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Apakah haiwan yang telah pupus akibat perubahan suhu pada Zaman Air Batu Akhir?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_1" value="incorrect"> Dinosaur</label><label class="block"><input type="radio" name="q5_1" value="correct"> Mamot</label><label class="block"><input type="radio" name="q5_1" value="incorrect"> Gajah</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Zaman Air Batu Akhir terbahagi kepada dua epok, iaitu...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_2" value="correct"> Epok Pleistosen dan Epok Holosen</label><label class="block"><input type="radio" name="q5_2" value="incorrect"> Zaman Logam dan Zaman Batu</label><label class="block"><input type="radio" name="q5_2" value="incorrect"> Zaman Kuno dan Zaman Moden</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Apakah yang berlaku kepada paras air laut semasa Epok Holosen?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_3" value="incorrect"> Menurun</label><label class="block"><input type="radio" name="q5_3" value="correct"> Meningkat</label><label class="block"><input type="radio" name="q5_3" value="incorrect"> Tidak berubah</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Kawasan tanah luas di Asia Tenggara yang menghubungkan daratan dengan kepulauan dikenali sebagai...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_4" value="correct"> Pentas Sunda</label><label class="block"><input type="radio" name="q5_4" value="incorrect"> Pentas Asia</label><label class="block"><input type="radio" name="q5_4" value="incorrect"> Pentas Lautan</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Mengapakah manusia pada Zaman Air Batu Akhir bergerak ke tempat lain?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q5_5" value="incorrect"> Untuk mencari air batu</label><label class="block"><input type="radio" name="q5_5" value="incorrect"> Kerana berlaku peperangan</label><label class="block"><input type="radio" name="q5_5" value="correct"> Untuk mencari kawasan yang lebih panas</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
+                </div>
+
                 <!-- Unit 6 Content -->
-                <div id="unit-6" class="unit-content">
+                <div id="unit-6" class="unit-content unit-style-6">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 6: Zaman Prasejarah</h2>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Kehidupan Manusia Zaman Prasejarah</h3>
-                             <p class="text-gray-700">Zaman Prasejarah ialah zaman sebelum manusia mengenal tulisan. Kewujudannya dibuktikan dengan penemuan artifak dan fosil.</p>
-                             <div class="overflow-x-auto">
-                                <table class="min-w-full bg-white">
-                                    <thead class="bg-blue-100"><tr><th class="py-2 px-4">Zaman</th><th class="py-2 px-4">Kegiatan Sosial</th><th class="py-2 px-4">Kegiatan Ekonomi</th></tr></thead>
-                                    <tbody>
-                                        <tr class="border-b"><td class="py-2 px-4"><b>Paleolitik</b><br>(200,000 SM)</td><td class="py-2 px-4">Hidup nomad dalam kelompok kecil, tinggal di dalam gua.</td><td class="py-2 px-4">Guna alat batu (Kapak Genggam), kutip hasil hutan, buru haiwan.</td></tr>
-                                        <tr class="border-b"><td class="py-2 px-4"><b>Mesolitik</b><br>(14,000 SM)</td><td class="py-2 px-4">Hidup nomad, tinggal di gua/pesisir pantai.</td><td class="py-2 px-4">Guna alat batu lebih baik (Kapak Batu), kutip hasil hutan, buru haiwan, tangkap ikan.</td></tr>
-                                        <tr class="border-b"><td class="py-2 px-4"><b>Neolitik</b><br>(3,000 SM)</td><td class="py-2 px-4">Hidup menetap dalam kelompok besar, bina petempatan di lembah sungai.</td><td class="py-2 px-4">Cucuk tanam, ternak haiwan, hasilkan tembikar, perdagangan tukar barang.</td></tr>
-                                        <tr><td class="py-2 px-4"><b>Logam</b><br>(700 SM)</td><td class="py-2 px-4">Hidup menetap, ada ketua sebagai pemimpin, amalkan adat & upacara tersusun.</td><td class="py-2 px-4">Guna alat logam (Kapak Bersoket), perdagangan & pelayaran jadi aktiviti utama, jalin hubungan dengan kerajaan luar.</td></tr>
-                                    </tbody>
-                                </table>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Sumbangan Teknologi</h3>
-                            <p class="text-gray-700">Manusia prasejarah bijak mencipta teknologi. Kemudahan masa kini adalah hasil inovasi yang sentiasa berkembang.</p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600">
-                                <li><b>Pertanian:</b> Dari alat batu/kayu kepada jentera moden.</li>
-                                <li><b>Komunikasi:</b> Dari lukisan/asap/bunyi kepada alat komunikasi moden.</li>
-                                <li><b>Pengangkutan:</b> Dari perahu batang pokok kepada kapal moden yang selamat.</li>
-                                <li><b>Keperluan Rumah:</b> Dari kayu api kepada dapur elektrik yang selamat.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Pada zaman apakah manusia mula hidup menetap, bercucuk tanam dan membuat tembikar?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_1" value="incorrect"> Zaman Paleolitik</label><label class="block"><input type="radio" name="q6_1" value="correct"> Zaman Neolitik</label><label class="block"><input type="radio" name="q6_1" value="incorrect"> Zaman Logam</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Apakah ciri utama kehidupan manusia Zaman Paleolitik?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_2" value="correct"> Hidup secara nomad</label><label class="block"><input type="radio" name="q6_2" value="incorrect"> Menjalankan perdagangan</label><label class="block"><input type="radio" name="q6_2" value="incorrect"> Membina petempatan kekal</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Peralatan yang diperbuat daripada logam mula digunakan pada zaman...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_3" value="incorrect"> Zaman Paleolitik</label><label class="block"><input type="radio" name="q6_3" value="incorrect"> Zaman Neolitik</label><label class="block"><input type="radio" name="q6_3" value="correct"> Zaman Logam</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Apakah maksud "nomad"?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_4" value="incorrect"> Kumpulan masyarakat yang suka berperang</label><label class="block"><input type="radio" name="q6_4" value="correct"> Kumpulan masyarakat yang selalu berpindah-randah</label><label class="block"><input type="radio" name="q6_4" value="incorrect"> Kumpulan masyarakat yang tinggal di dalam gua</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Aktiviti perdagangan dan pelayaran menjadi aktiviti utama pada...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_5" value="correct"> Zaman Logam</label><label class="block"><input type="radio" name="q6_5" value="incorrect"> Zaman Mesolitik</label><label class="block"><input type="radio" name="q6_5" value="incorrect"> Zaman Neolitik</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5 4 4"></path><path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13"></path><path d="m8 6 4.3 4.3c.94.94.94 2.46 0 3.4L10 16"></path><path d="M7 13l-2.3 2.3a2.41 2.41 0 0 0 0 3.4l2.6 2.6a2.41 2.41 0 0 0 3.4 0L13 22"></path></svg>Kehidupan Manusia Zaman Prasejarah</h3><p class="text-gray-700">Zaman sebelum manusia mengenal tulisan. Terdapat 4 tahap utama:</p><div class="overflow-x-auto mt-4"><table class="min-w-full bg-white text-sm text-center"><thead class="bg-amber-100"><tr><th class="p-2">Zaman</th><th class="p-2">Kegiatan Sosial</th><th class="p-2">Kegiatan Ekonomi</th></tr></thead><tbody><tr class="border-b"><td class="p-2"><b>Paleolitik</b><br>(200,000 SM)</td><td class="p-2">Hidup nomad, tinggal di gua.</td><td class="p-2">Guna alat batu, kutip hasil hutan.</td></tr><tr class="border-b"><td class="p-2"><b>Mesolitik</b><br>(14,000 SM)</td><td class="p-2">Hidup nomad, tinggal di gua/pesisir pantai.</td><td class="p-2">Alat batu lebih baik, tangkap ikan.</td></tr><tr class="border-b"><td class="p-2"><b>Neolitik</b><br>(3,000 SM)</td><td class="p-2">Hidup menetap, bina petempatan.</td><td class="p-2">Cucuk tanam, ternak haiwan, buat tembikar.</td></tr><tr><td class="p-2"><b>Logam</b><br>(700 SM)</td><td class="p-2">Ada ketua, amalkan adat.</td><td class="p-2">Guna alat logam, berdagang & belayar.</td></tr></tbody></table></div></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>Sumbangan Teknologi</h3><p class="text-gray-700">Manusia prasejarah bijak mencipta teknologi. Kemudahan masa kini ialah hasil inovasi yang sentiasa berkembang.</p><ul class="list-disc list-inside mt-2 text-gray-600"><li><b>Pertanian:</b> Dari alat batu/kayu kepada jentera moden.</li><li><b>Komunikasi:</b> Dari lukisan/asap kepada alat komunikasi moden.</li><li><b>Pengangkutan:</b> Dari perahu kepada kapal moden.</li><li><b>Keperluan Rumah:</b> Dari kayu api kepada dapur elektrik.</li></ul></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Pada zaman apakah manusia mula hidup menetap, bercucuk tanam dan membuat tembikar?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_1" value="incorrect"> Zaman Paleolitik</label><label class="block"><input type="radio" name="q6_1" value="correct"> Zaman Neolitik</label><label class="block"><input type="radio" name="q6_1" value="incorrect"> Zaman Logam</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Apakah ciri utama kehidupan manusia Zaman Paleolitik?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_2" value="correct"> Hidup secara nomad</label><label class="block"><input type="radio" name="q6_2" value="incorrect"> Menjalankan perdagangan</label><label class="block"><input type="radio" name="q6_2" value="incorrect"> Membina petempatan kekal</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Peralatan yang diperbuat daripada logam mula digunakan pada zaman...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_3" value="incorrect"> Zaman Paleolitik</label><label class="block"><input type="radio" name="q6_3" value="incorrect"> Zaman Neolitik</label><label class="block"><input type="radio" name="q6_3" value="correct"> Zaman Logam</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Apakah maksud "nomad"?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_4" value="incorrect"> Kumpulan masyarakat yang suka berperang</label><label class="block"><input type="radio" name="q6_4" value="correct"> Kumpulan masyarakat yang selalu berpindah-randah</label><label class="block"><input type="radio" name="q6_4" value="incorrect"> Kumpulan masyarakat yang tinggal di dalam gua</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Aktiviti perdagangan dan pelayaran menjadi aktiviti utama pada...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q6_5" value="correct"> Zaman Logam</label><label class="block"><input type="radio" name="q6_5" value="incorrect"> Zaman Mesolitik</label><label class="block"><input type="radio" name="q6_5" value="incorrect"> Zaman Neolitik</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
 
                 <!-- Unit 7 Content -->
-                <div id="unit-7" class="unit-content">
+                <div id="unit-7" class="unit-content unit-style-7">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 7: Kerajaan Melayu Awal</h2>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Lokasi Kerajaan Melayu Awal</h3>
-                             <p class="text-gray-700">Kerajaan Melayu Awal di Alam Melayu wujud sejak abad pertama, bermula dari petempatan kecil, berkembang menjadi pelabuhan dan akhirnya kerajaan. Lokasinya strategik di pesisir pantai.</p>
-                             <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Kerajaan Funan (Abad 1):</b> Tapak bandar Oc-Eo.</li>
-                                <li><b>Kerajaan Champa (Abad 2):</b> Candi Po Nagar.</li>
-                                <li><b>Kerajaan Kedah Tua (Abad 5):</b> Lembah Bujang, Kedah (Candi Bukit Batu Pahat).</li>
-                                <li><b>Kerajaan Chih-Tu (Abad 6):</b> Tanah Merah, Kelantan.</li>
-                                <li><b>Kerajaan Gangga Nagara (Abad 6):</b> Pantai barat, Perak.</li>
-                                <li><b>Kerajaan Srivijaya (Abad 7):</b> Lembah Sungai Musi, Sumatera (Candi Muara Jambi).</li>
-                                <li><b>Kerajaan Majapahit (Abad 13):</b> Trowulan, Jawa Timur (Gapura Bajang Ratu).</li>
-                             </ul>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Hubungan Diplomatik & Kegiatan Ekonomi</h3>
-                            <p class="sub-title">Hubungan Diplomatik:</p>
-                             <p class="text-gray-600 mb-2">Hubungan terjalin antara kerajaan. Kerajaan Melayu Awal (Kedah Tua, Srivijaya) menjalinkan hubungan dengan China dan India untuk tujuan politik (pengiktirafan & keselamatan), ekonomi (perdagangan barangan) dan sosial (keamanan & perkahwinan).</p>
-                             <p class="sub-title mt-4">Kegiatan Ekonomi:</p>
-                            <ul class="list-disc list-inside text-gray-600">
-                                <li><b>Pertanian:</b> Menanam padi, pisang, buah pala di lembah sungai yang subur.</li>
-                                <li><b>Perdagangan:</b> Berdagang rempah-ratus (lada hitam, bunga cengkih) di pelabuhan.</li>
-                                <li><b>Hasil Hutan & Laut:</b> Mengumpul rotan, gaharu, kapur barus, mutiara.</li>
-                                <li><b>Perlombongan & Pembuatan:</b> Melombong bijih timah, besi dan emas; membuat barang perhiasan, tembikar dan senjata.</li>
-                            </ul>
-                        </div>
-                    </div>
-                     <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                         <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Kerajaan Kedah Tua terletak di...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_1" value="correct"> Lembah Bujang</label><label class="block"><input type="radio" name="q7_1" value="incorrect"> Pantai Barat Perak</label><label class="block"><input type="radio" name="q7_1" value="incorrect"> Sungai Sarawak</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Dua kuasa besar yang menjalinkan hubungan diplomatik dengan Kerajaan Melayu Awal ialah...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_2" value="incorrect"> Rom dan Parsi</label><label class="block"><input type="radio" name="q7_2" value="correct"> China dan India</label><label class="block"><input type="radio" name="q7_2" value="incorrect"> Mesir dan Greek</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Apakah barangan dagangan utama kerajaan Melayu awal?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_3" value="incorrect"> Sutera dan tembikar</label><label class="block"><input type="radio" name="q7_3" value="incorrect"> Bijih timah dan emas</label><label class="block"><input type="radio" name="q7_3" value="correct"> Rempah-ratus</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Kerajaan Gangga Nagara terletak di negeri...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_4" value="correct"> Perak</label><label class="block"><input type="radio" name="q7_4" value="incorrect"> Kedah</label><label class="block"><input type="radio" name="q7_4" value="incorrect"> Kelantan</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Apakah tujuan utama hubungan diplomatik dari segi politik?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_5" value="incorrect"> Untuk mengeratkan persahabatan</label><label class="block"><input type="radio" name="q7_5" value="correct"> Untuk mendapatkan pengiktirafan dan menjamin keselamatan</label><label class="block"><input type="radio" name="q7_5" value="incorrect"> Untuk memasarkan barang dagangan</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>Lokasi Kerajaan Melayu Awal</h3><p class="text-gray-700">Kerajaan Melayu Awal wujud sejak abad pertama, bermula dari petempatan kecil menjadi pelabuhan dan kerajaan. Antara kerajaan yang terkenal:</p><ul class="list-disc list-inside mt-2 text-gray-600"><li><b>Kerajaan Kedah Tua (Abad 5):</b> Lembah Bujang, Kedah.</li><li><b>Kerajaan Gangga Nagara (Abad 6):</b> Pantai barat, Perak.</li><li><b>Kerajaan Srivijaya (Abad 7):</b> Lembah Sungai Musi, Sumatera.</li><li><b>Kerajaan Majapahit (Abad 13):</b> Trowulan, Jawa Timur.</li></ul></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"></path><path d="M12 18c-4.4 0-8-2.7-8-6s3.6-6 8-6 8 2.7 8 6-3.6 6-8 6z"></path><path d="M12 12c-2.2 0-4-1.3-4-3s1.8-3 4-3 4 1.3 4 3-1.8 3-4 3z"></path></svg>Hubungan Diplomatik & Ekonomi</h3><p class="sub-title">Hubungan Diplomatik:</p><p class="text-gray-600">Kerajaan Melayu Awal menjalinkan hubungan dengan China dan India untuk tujuan politik (pengiktirafan), ekonomi (perdagangan) dan sosial (keamanan).</p><p class="sub-title mt-4">Kegiatan Ekonomi:</p><ul class="list-disc list-inside text-gray-600"><li><b>Pertanian:</b> Menanam padi, pisang.</li><li><b>Perdagangan:</b> Berdagang rempah-ratus.</li><li><b>Hasil Hutan & Laut:</b> Mengumpul rotan, gaharu, mutiara.</li><li><b>Perlombongan & Pembuatan:</b> Melombong bijih timah dan emas.</li></ul></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Kerajaan Kedah Tua terletak di...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_1" value="correct"> Lembah Bujang</label><label class="block"><input type="radio" name="q7_1" value="incorrect"> Pantai Barat Perak</label><label class="block"><input type="radio" name="q7_1" value="incorrect"> Sungai Sarawak</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Dua kuasa besar yang menjalinkan hubungan diplomatik dengan Kerajaan Melayu Awal ialah...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_2" value="incorrect"> Rom dan Parsi</label><label class="block"><input type="radio" name="q7_2" value="correct"> China dan India</label><label class="block"><input type="radio" name="q7_2" value="incorrect"> Mesir dan Greek</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Apakah barangan dagangan utama kerajaan Melayu awal?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_3" value="incorrect"> Sutera dan tembikar</label><label class="block"><input type="radio" name="q7_3" value="incorrect"> Bijih timah dan emas</label><label class="block"><input type="radio" name="q7_3" value="correct"> Rempah-ratus</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Kerajaan Gangga Nagara terletak di negeri...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_4" value="correct"> Perak</label><label class="block"><input type="radio" name="q7_4" value="incorrect"> Kedah</label><label class="block"><input type="radio" name="q7_4" value="incorrect"> Kelantan</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Apakah tujuan utama hubungan diplomatik dari segi politik?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q7_5" value="incorrect"> Untuk mengeratkan persahabatan</label><label class="block"><input type="radio" name="q7_5" value="correct"> Untuk mendapatkan pengiktirafan dan menjamin keselamatan</label><label class="block"><input type="radio" name="q7_5" value="incorrect"> Untuk memasarkan barang dagangan</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
 
                 <!-- Unit 8 Content -->
-                <div id="unit-8" class="unit-content">
+                <div id="unit-8" class="unit-content unit-style-8">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 8: Tokoh Terbilang Kesultanan Melayu Melaka</h2>
-                     <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Struktur Masyarakat & Maksud Tokoh Terbilang</h3>
-                             <p class="sub-title">Struktur Masyarakat:</p>
-                             <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Golongan Pemerintah:</b> Sultan (pemerintah tertinggi) dan Pembesar (membantu sultan).</li>
-                                <li><b>Golongan Diperintah:</b> Rakyat (pengikut setia) dan Hamba (orang suruhan).</li>
-                             </ul>
-                             <p class="sub-title mt-4">Maksud Tokoh Terbilang:</p>
-                             <p class="text-gray-600">Individu yang dihormati dan disanjungi oleh masyarakat. Cirinya ialah gigih, sedia berkorban untuk negara dan mempertahankan kedudukan negara.</p>
-                        </div>
-                    </div>
-                     <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Contoh Tokoh Terbilang & Peranan Mereka</h3>
-                             <p class="sub-title">Tokoh Terbilang dan Sumbangan:</p>
-                             <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Parameswara:</b> Mengasaskan Kesultanan Melayu Melaka.</li>
-                                <li><b>Sultan Muzaffar Shah:</b> Mengukuhkan empayar Melaka.</li>
-                                <li><b>Sultan Mansur Shah:</b> Meluaskan empayar dan menjadikan Melaka pusat penyebaran Islam.</li>
-                                <li><b>Sultan Alauddin Riayat Shah:</b> Menjaga keamanan dan kebajikan rakyat.</li>
-                                <li><b>Bendahara Tun Perak:</b> Memastikan keselamatan perairan Melaka.</li>
-                                <li><b>Laksamana Hang Tuah:</b> Menjadi utusan dan menunjukkan kesetiaan tinggi.</li>
-                             </ul>
-                             <p class="sub-title mt-4">Peranan Tokoh:</p>
-                            <ul class="list-disc list-inside text-gray-600">
-                                <li><b>Sultan:</b> Pemerintah tertinggi, lambang perpaduan, ketua tentera, ketua agama, menentukan hubungan diplomatik.</li>
-                                <li><b>Bendahara:</b> Penasihat sultan, ketua pembesar, ketua hakim, pemangku sultan.</li>
-                                <li><b>Laksamana:</b> Ketua angkatan laut, pengawal peribadi sultan, duta Melaka.</li>
-                            </ul>
-                        </div>
-                    </div>
-                     <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Siapakah yang bergelar ketua angkatan laut Melaka?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_1" value="incorrect"> Bendahara</label><label class="block"><input type="radio" name="q8_1" value="incorrect"> Sultan</label><label class="block"><input type="radio" name="q8_1" value="correct"> Laksamana</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Siapakah yang berada di lapisan paling bawah dalam struktur masyarakat Kesultanan Melayu Melaka?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_2" value="correct"> Hamba</label><label class="block"><input type="radio" name="q8_2" value="incorrect"> Rakyat</label><label class="block"><input type="radio" name="q8_2" value="incorrect"> Pembesar</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Siapakah tokoh yang mengasaskan Kesultanan Melayu Melaka?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_3" value="incorrect"> Sultan Mansur Shah</label><label class="block"><input type="radio" name="q8_3" value="correct"> Parameswara</label><label class="block"><input type="radio" name="q8_3" value="incorrect"> Bendahara Tun Perak</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Apakah peranan utama seorang Bendahara?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_4" value="incorrect"> Mengetuai angkatan laut</label><label class="block"><input type="radio" name="q8_4" value="incorrect"> Menjaga kebajikan rakyat</label><label class="block"><input type="radio" name="q8_4" value="correct"> Menjadi penasihat sultan dalam pentadbiran</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Sultan yang menjadikan Melaka sebagai pusat penyebaran agama Islam ialah...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_5" value="correct"> Sultan Mansur Shah</label><label class="block"><input type="radio" name="q8_5" value="incorrect"> Sultan Alauddin Riayat Shah</label><label class="block"><input type="radio" name="q8_5" value="incorrect"> Sultan Muzaffar Shah</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>Struktur Masyarakat & Tokoh Terbilang</h3><p class="sub-title">Struktur Masyarakat:</p><ul class="list-disc list-inside mt-2 text-gray-600"><li><b>Golongan Pemerintah:</b> Sultan dan Pembesar.</li><li><b>Golongan Diperintah:</b> Rakyat dan Hamba.</li></ul><p class="sub-title mt-4">Tokoh Terbilang:</p><p class="text-gray-600">Individu yang dihormati dan disanjungi. Cirinya ialah gigih dan sedia berkorban untuk negara.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>Peranan Tokoh Terbilang</h3><ul class="list-disc list-inside mt-2 text-gray-600"><li><b>Sultan:</b> Pemerintah tertinggi, lambang perpaduan, ketua tentera.</li><li><b>Bendahara:</b> Penasihat sultan, ketua pembesar, ketua hakim.</li><li><b>Laksamana:</b> Ketua angkatan laut, pengawal peribadi sultan, duta Melaka.</li></ul><div class="info-box mt-4"><p class="sub-title">Contoh Tokoh:</p><p class="text-gray-600">Parameswara, Sultan Mansur Shah, Bendahara Tun Perak, Laksamana Hang Tuah.</p></div></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Siapakah yang bergelar ketua angkatan laut Melaka?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_1" value="incorrect"> Bendahara</label><label class="block"><input type="radio" name="q8_1" value="incorrect"> Sultan</label><label class="block"><input type="radio" name="q8_1" value="correct"> Laksamana</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Siapakah yang berada di lapisan paling bawah dalam struktur masyarakat Kesultanan Melayu Melaka?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_2" value="correct"> Hamba</label><label class="block"><input type="radio" name="q8_2" value="incorrect"> Rakyat</label><label class="block"><input type="radio" name="q8_2" value="incorrect"> Pembesar</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Siapakah tokoh yang mengasaskan Kesultanan Melayu Melaka?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_3" value="incorrect"> Sultan Mansur Shah</label><label class="block"><input type="radio" name="q8_3" value="correct"> Parameswara</label><label class="block"><input type="radio" name="q8_3" value="incorrect"> Bendahara Tun Perak</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Apakah peranan utama seorang Bendahara?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_4" value="incorrect"> Mengetuai angkatan laut</label><label class="block"><input type="radio" name="q8_4" value="incorrect"> Menjaga kebajikan rakyat</label><label class="block"><input type="radio" name="q8_4" value="correct"> Menjadi penasihat sultan dalam pentadbiran</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Sultan yang menjadikan Melaka sebagai pusat penyebaran agama Islam ialah...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q8_5" value="correct"> Sultan Mansur Shah</label><label class="block"><input type="radio" name="q8_5" value="incorrect"> Sultan Alauddin Riayat Shah</label><label class="block"><input type="radio" name="q8_5" value="incorrect"> Sultan Muzaffar Shah</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
 
                 <!-- Unit 9 Content -->
-                <div id="unit-9" class="unit-content">
+                <div id="unit-9" class="unit-content unit-style-9">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 9: Pengasas Kesultanan Melayu Melaka</h2>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Kenali Pengasas Melaka</h3>
-                            <p class="text-gray-700">Terdapat dua sumber utama:</p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Sulalatus Salatin (Sejarah Melayu):</b> Menyatakan pengasasnya ialah <b>Sultan Iskandar Shah</b>.</li>
-                                <li><b>Suma Oriental (Sumber Portugis):</b> Menyatakan pengasasnya ialah <b>Parameswara</b>.</li>
-                            </ul>
-                            <p class="text-gray-700 mt-2">Parameswara ialah putera raja dari Palembang. Beliau cuba membebaskan Palembang dari jajahan Majapahit, tetapi diserang dan terpaksa melarikan diri.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Pengembaraan Parameswara & Pembukaan Melaka</h3>
-                             <p class="sub-title">Pengembaraan:</p>
-                             <p class="text-gray-600">Parameswara dan pengikutnya ke Temasik (Singapura) dan disambut baik oleh Temagi, wakil kerajaan Siam. Parameswara merancang menjadi pemerintah, lalu membunuh Temagi. Kerajaan Siam ingin menuntut bela, menyebabkan Parameswara berundur ke Muar. Beliau meneruskan perjalanan ke Sening Ujong, dan akhirnya tiba di muara Sungai Bertam.</p>
-                             <p class="sub-title mt-4">Peristiwa Pembukaan Melaka:</p>
-                             <p class="text-gray-600">Ketika berehat di bawah pokok, Parameswara melihat seekor pelanduk putih menendang anjing perburuannya sehingga jatuh ke sungai. Beliau menganggap tempat itu bertuah kerana haiwan kecil dapat mengalahkan haiwan besar, lalu memutuskan membuka kerajaan baharu bernama <b>Melaka</b>, sempena nama pokok tempat beliau bersandar.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Asal Usul Nama Melaka & Keistimewaannya</h3>
-                            <p class="sub-title">Pelbagai Sumber Nama Melaka:</p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600">
-                                <li><b>Sumber Arab:</b> 'Malakat' (perhimpunan segala dagang).</li>
-                                <li><b>Mitos Hindu:</b> 'Amalaka' (pokok pertama di alam semesta).</li>
-                                <li><b>Suma Oriental:</b> 'Malaqa' (tempat perlindungan).</li>
-                            </ul>
-                            <p class="sub-title mt-4">Keistimewaan Melaka:</p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Terlindung daripada Angin Monsun:</b> Kapal boleh belayar dengan selamat.</li>
-                                <li><b>Kedudukan Strategik:</b> Terletak di antara jalan laut timur dan barat, menarik minat pedagang.</li>
-                                <li><b>Kebijaksanaan Pemerintah:</b> Pentadbiran yang cekap dan terbuka.</li>
-                            </ul>
-                        </div>
-                    </div>
-                     <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Apakah peristiwa yang menyebabkan Parameswara membuka negeri Melaka?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_1" value="incorrect"> Melihat banyak biawak di Muar.</label><label class="block"><input type="radio" name="q9_1" value="correct"> Pelanduk putih menendang anjing perburuannya.</label><label class="block"><input type="radio" name="q9_1" value="incorrect"> Bertemu dengan Temagi di Temasik.</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Menurut sumber Portugis 'Suma Oriental', siapakah pengasas Melaka?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_2" value="incorrect"> Sultan Iskandar Shah</label><label class="block"><input type="radio" name="q9_2" value="correct"> Parameswara</label><label class="block"><input type="radio" name="q9_2" value="incorrect"> Tun Sri Lanang</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Parameswara berasal dari...</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_3" value="correct"> Palembang</label><label class="block"><input type="radio" name="q9_3" value="incorrect"> Temasik</label><label class="block"><input type="radio" name="q9_3" value="incorrect"> Majapahit</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Mengapakah lokasi Melaka dianggap strategik?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_4" value="correct"> Berada di antara jalan laut timur dan barat</label><label class="block"><input type="radio" name="q9_4" value="incorrect"> Mempunyai banyak pokok Melaka</label><label class="block"><input type="radio" name="q9_4" value="incorrect"> Terlindung daripada serangan lanun</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Apakah maksud 'Malakat' menurut sumber Arab?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_5" value="incorrect"> Tempat perlindungan</label><label class="block"><input type="radio" name="q9_5" value="incorrect"> Pokok pertama</label><label class="block"><input type="radio" name="q9_5" value="correct"> Perhimpunan segala dagang</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 1.5.63 3.08 1.75 4.5C9.88 13 12 15.25 12 15.25s2.12-2.25 3.25-3.75C16.37 10.08 17 8.5 17 7a5 5 0 0 0-5-5z"></path><path d="M12 21.75c-1.25-1.5-2.5-3-2.5-4.75a2.5 2.5 0 0 1 5 0c0 1.75-1.25 3.25-2.5 4.75z"></path></svg>Kenali Pengasas Melaka</h3><p class="text-gray-700">Terdapat dua sumber utama:</p><ul class="list-disc list-inside mt-2 text-gray-600"><li><b>Sulalatus Salatin:</b> Pengasasnya ialah <b>Sultan Iskandar Shah</b>.</li><li><b>Suma Oriental:</b> Pengasasnya ialah <b>Parameswara</b>.</li></ul><p class="text-gray-700 mt-2">Parameswara ialah putera raja dari Palembang yang melarikan diri dari serangan Majapahit.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg>Pengembaraan Parameswara & Pembukaan Melaka</h3><p class="sub-title">Pengembaraan:</p><p class="text-gray-600">Parameswara lari ke Temasik, membunuh pemerintahnya Temagi, kemudian berundur ke Muar dan akhirnya tiba di muara Sungai Bertam.</p><p class="sub-title mt-4">Peristiwa Pembukaan Melaka:</p><p class="text-gray-600">Ketika berehat di bawah pokok, Parameswara melihat seekor pelanduk putih menendang anjingnya. Beliau menganggap tempat itu bertuah lalu menamakannya <b>Melaka</b>, sempena nama pokok tempat beliau bersandar.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m13 7-6 6"></path><path d="m10 13 6-6"></path></svg>Keistimewaan Melaka</h3><ul class="list-disc list-inside mt-2 text-gray-600"><li><b>Terlindung daripada Angin Monsun:</b> Kapal boleh belayar dengan selamat.</li><li><b>Kedudukan Strategik:</b> Di antara jalan laut timur dan barat, menarik minat pedagang.</li><li><b>Kebijaksanaan Pemerintah:</b> Pentadbiran yang cekap dan terbuka.</li></ul></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Apakah peristiwa yang menyebabkan Parameswara membuka negeri Melaka?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_1" value="incorrect"> Melihat banyak biawak di Muar.</label><label class="block"><input type="radio" name="q9_1" value="correct"> Pelanduk putih menendang anjing perburuannya.</label><label class="block"><input type="radio" name="q9_1" value="incorrect"> Bertemu dengan Temagi di Temasik.</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Menurut sumber Portugis 'Suma Oriental', siapakah pengasas Melaka?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_2" value="incorrect"> Sultan Iskandar Shah</label><label class="block"><input type="radio" name="q9_2" value="correct"> Parameswara</label><label class="block"><input type="radio" name="q9_2" value="incorrect"> Tun Sri Lanang</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Parameswara berasal dari...</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_3" value="correct"> Palembang</label><label class="block"><input type="radio" name="q9_3" value="incorrect"> Temasik</label><label class="block"><input type="radio" name="q9_3" value="incorrect"> Majapahit</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Mengapakah lokasi Melaka dianggap strategik?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_4" value="correct"> Berada di antara jalan laut timur dan barat</label><label class="block"><input type="radio" name="q9_4" value="incorrect"> Mempunyai banyak pokok Melaka</label><label class="block"><input type="radio" name="q9_4" value="incorrect"> Terlindung daripada serangan lanun</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Apakah maksud 'Malakat' menurut sumber Arab?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q9_5" value="incorrect"> Tempat perlindungan</label><label class="block"><input type="radio" name="q9_5" value="incorrect"> Pokok pertama</label><label class="block"><input type="radio" name="q9_5" value="correct"> Perhimpunan segala dagang</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
 
                 <!-- Unit 10 Content -->
-                <div id="unit-10" class="unit-content">
+                <div id="unit-10" class="unit-content unit-style-10">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 10: Tun Perak Bendahara Terbilang</h2>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Riwayat Hidup Tun Perak</h3>
-                            <p class="text-gray-700">Tun Perak merupakan tonggak utama pentadbiran Kesultanan Melayu Melaka. Beliau berasal daripada keluarga pembesar.</p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600">
-                                <li><b>Nama Bapa:</b> Bendahara Seri Wak Raja Tun Perpatih Serdang.</li>
-                                <li><b>Adik-beradik:</b> Tun Kudu dan Tun Perpatih Putih.</li>
-                                <li><b>Jawatan:</b> Pernah menjadi Penghulu Klang, Penghulu Bendahari Melaka dan akhirnya Bendahara Melaka.</li>
-                                <li><b>Sumbangan:</b> Berkhidmat sebagai bendahara kepada empat orang sultan (Sultan Muzaffar Shah, Sultan Mansur Shah, Sultan Alauddin Riayat Shah, Sultan Mahmud Shah) dan dianugerahi gelaran <b>Bendahara Paduka Raja</b>.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Peranan & Kebijaksanaan Tun Perak</h3>
-                             <p class="sub-title">Peranan Tun Perak:</p>
-                             <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Ketua Pembesar:</b> Menjalankan tugas pentadbiran dan memastikan undang-undang dipatuhi.</li>
-                                <li><b>Penasihat Sultan:</b> Menasihati sultan dalam hal ehwal pemerintahan.</li>
-                                <li><b>Ketua Diplomat:</b> Menguruskan hubungan diplomatik dengan China dan Siam.</li>
-                                <li><b>Panglima Tentera:</b> Membantu sultan meluaskan empayar.</li>
-                             </ul>
-                             <p class="sub-title mt-4">Kebijaksanaan Tun Perak:</p>
-                            <ul class="list-disc list-inside text-gray-600">
-                                <li><b>Pentadbiran:</b> Mewujudkan kerjasama erat antara sultan dengan pembesar untuk meluaskan empayar.</li>
-                                <li><b>Pertahanan:</b> Mengarahkan supaya jamung (obor) dipasang pada setiap pokok bakau di sepanjang pantai. Tentera Siam menyangka ramai tentera Melaka telah bersiap sedia lalu membatalkan hasrat menyerang.</li>
-                                <li><b>Diplomatik:</b> Menjalinkan hubungan persahabatan dengan Siam melalui surat.</li>
-                                <li><b>Agama Islam:</b> Menggalakkan kedatangan ulama ke Melaka dan menasihati sultan supaya memerintah mengikut ajaran Islam.</li>
-                                <li><b>Mempertahankan Kesultanan:</b> Tetap setia kepada sultan walaupun anaknya, Tun Besar, dibunuh oleh Raja Muhammad. Beliau melarang pengikutnya menuntut bela demi mengekalkan keamanan.</li>
-                            </ul>
-                        </div>
-                    </div>
-                     <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Apakah strategi bijak Tun Perak untuk menakutkan tentera Siam daripada menyerang Melaka?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_1" value="correct"> Memasang jamung pada pokok bakau.</label><label class="block"><input type="radio" name="q10_1" value="incorrect"> Menulis surat kepada Raja Siam.</label><label class="block"><input type="radio" name="q10_1" value="incorrect"> Meminta bantuan dari negara China.</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Tun Perak berkhidmat sebagai bendahara di bawah pemerintahan berapa orang sultan?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_2" value="incorrect"> Dua</label><label class="block"><input type="radio" name="q10_2" value="incorrect"> Tiga</label><label class="block"><input type="radio" name="q10_2" value="correct"> Empat</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Apakah gelaran yang dianugerahkan kepada Tun Perak?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_3" value="incorrect"> Laksamana Terbilang</label><label class="block"><input type="radio" name="q10_3" value="correct"> Bendahara Paduka Raja</label><label class="block"><input type="radio" name="q10_3" value="incorrect"> Sultan Melaka</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Apakah tindakan Tun Perak apabila anaknya, Tun Besar, dibunuh oleh Raja Muhammad?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_4" value="correct"> Tetap setia kepada sultan dan melarang pengikutnya menuntut bela</label><label class="block"><input type="radio" name="q10_4" value="incorrect"> Menyerang istana untuk menuntut bela</label><label class="block"><input type="radio" name="q10_4" value="incorrect"> Meminta bantuan daripada kerajaan Siam</label></div><div class="quiz-feedback"></div>
-                            </div>
-                             <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Antara berikut, yang manakah BUKAN peranan Tun Perak?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_5" value="incorrect"> Penasihat Sultan</label><label class="block"><input type="radio" name="q10_5" value="correct"> Ketua Angkatan Laut</label><label class="block"><input type="radio" name="q10_5" value="incorrect"> Panglima Tentera</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Riwayat Hidup Tun Perak</h3><p class="text-gray-700">Tonggak utama pentadbiran Melaka. Berkhidmat sebagai bendahara kepada empat orang sultan dan dianugerahi gelaran <b>Bendahara Paduka Raja</b>.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>Peranan & Kebijaksanaan Tun Perak</h3><p class="sub-title">Peranan Tun Perak:</p><ul class="list-disc list-inside mt-2 text-gray-600"><li>Ketua Pembesar, Penasihat Sultan, Ketua Diplomat, Panglima Tentera.</li></ul><p class="sub-title mt-4">Kebijaksanaan Tun Perak:</p><ul class="list-disc list-inside text-gray-600"><li><b>Pertahanan:</b> Mengarahkan jamung (obor) dipasang pada pokok bakau untuk menakutkan tentera Siam.</li><li><b>Diplomatik:</b> Menjalinkan hubungan persahabatan dengan Siam.</li><li><b>Mempertahankan Kesultanan:</b> Tetap setia kepada sultan walaupun anaknya dibunuh oleh Raja Muhammad.</li></ul></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Apakah strategi bijak Tun Perak untuk menakutkan tentera Siam daripada menyerang Melaka?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_1" value="correct"> Memasang jamung pada pokok bakau.</label><label class="block"><input type="radio" name="q10_1" value="incorrect"> Menulis surat kepada Raja Siam.</label><label class="block"><input type="radio" name="q10_1" value="incorrect"> Meminta bantuan dari negara China.</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Tun Perak berkhidmat sebagai bendahara di bawah pemerintahan berapa orang sultan?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_2" value="incorrect"> Dua</label><label class="block"><input type="radio" name="q10_2" value="incorrect"> Tiga</label><label class="block"><input type="radio" name="q10_2" value="correct"> Empat</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Apakah gelaran yang dianugerahkan kepada Tun Perak?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_3" value="incorrect"> Laksamana Terbilang</label><label class="block"><input type="radio" name="q10_3" value="correct"> Bendahara Paduka Raja</label><label class="block"><input type="radio" name="q10_3" value="incorrect"> Sultan Melaka</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Apakah tindakan Tun Perak apabila anaknya, Tun Besar, dibunuh oleh Raja Muhammad?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_4" value="correct"> Tetap setia kepada sultan dan melarang pengikutnya menuntut bela</label><label class="block"><input type="radio" name="q10_4" value="incorrect"> Menyerang istana untuk menuntut bela</label><label class="block"><input type="radio" name="q10_4" value="incorrect"> Meminta bantuan daripada kerajaan Siam</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Antara berikut, yang manakah BUKAN peranan Tun Perak?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q10_5" value="incorrect"> Penasihat Sultan</label><label class="block"><input type="radio" name="q10_5" value="correct"> Ketua Angkatan Laut</label><label class="block"><input type="radio" name="q10_5" value="incorrect"> Panglima Tentera</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
 
                 <!-- Unit 11 Content -->
-                <div id="unit-11" class="unit-content">
+                <div id="unit-11" class="unit-content unit-style-11">
                     <h2 class="text-3xl font-bold mb-6 text-gray-800">Unit 11: Hang Tuah Laksamana Terbilang</h2>
-                     <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Riwayat Hidup Hang Tuah</h3>
-                            <p class="text-gray-700">Hang Tuah ialah Laksamana Melaka yang terkenal. Beliau berasal dari Kampung Sungai Duyung. Bapanya bernama Hang Mahmud dan ibunya Dang Merdu Wati. Beliau mempunyai empat sahabat karib: Hang Jebat, Hang Kasturi, Hang Lekir dan Hang Lekiu. Beliau dilantik menjadi laksamana selepas menyelamatkan bendahara daripada seorang pengamuk. Beliau difitnah dan dijatuhi hukuman bunuh, tetapi disembunyikan oleh bendahara. Apabila Hang Jebat mengamuk menuntut bela, Hang Tuah muncul kembali untuk menumpaskannya dan dilantik semula sebagai Laksamana.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow mb-4">
-                        <div class="note-section">
-                            <h3 class="note-title">Kualiti Diri & Peranan Hang Tuah</h3>
-                             <p class="sub-title">Kualiti Diri Hang Tuah:</p>
-                             <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
-                                <li><b>Bijaksana:</b> Menguasai 12 bahasa untuk memudahkan tugas rasmi.</li>
-                                <li><b>Jujur & Amanah:</b> Menjalankan tugas yang diamanahkan dengan jujur.</li>
-                                <li><b>Bertanggungjawab:</b> Menjaga keselamatan perairan Melaka dan nama baik Melaka semasa menjadi utusan.</li>
-                                <li><b>Taat Setia:</b> Mentaati perintah sultan.</li>
-                                <li><b>Berani:</b> Menyelamatkan Bendahara dan mengalahkan musuh seperti Taming Sari.</li>
-                                <li><b>Mahir Bersilat:</b> Berguru dengan Aria Putera.</li>
-                             </ul>
-                             <p class="sub-title mt-4">Peranan Hang Tuah:</p>
-                             <p class="text-gray-600">Setia kepada Sultan, Ketua Angkatan Laut, Pengawal Sultan, Melaksanakan Perintah Sultan, Menjamin keselamatan pedagang, dan menjaga keamanan perairan.</p>
-                        </div>
-                    </div>
-                     <!-- Kuiz -->
-                    <div class="mt-8 bg-blue-50 p-6 rounded-lg shadow">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Jom Uji Minda!</h3>
-                        <div class="quiz-container">
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">1. Antara berikut, yang manakah BUKAN kualiti diri Hang Tuah?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_1" value="incorrect"> Taat Setia</label><label class="block"><input type="radio" name="q11_1" value="incorrect"> Berani</label><label class="block"><input type="radio" name="q11_1" value="correct"> Penderhaka</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">2. Berapakah jumlah bahasa yang dikuasai oleh Hang Tuah?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_2" value="incorrect"> 5</label><label class="block"><input type="radio" name="q11_2" value="correct"> 12</label><label class="block"><input type="radio" name="q11_2" value="incorrect"> 10</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">3. Siapakah sahabat Hang Tuah yang mengamuk kerana menyangka Hang Tuah telah dihukum bunuh?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_3" value="correct"> Hang Jebat</label><label class="block"><input type="radio" name="q11_3" value="incorrect"> Hang Lekir</label><label class="block"><input type="radio" name="q11_3" value="incorrect"> Hang Kasturi</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">4. Apakah jawatan Hang Tuah dalam pentadbiran Kesultanan Melayu Melaka?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_4" value="incorrect"> Bendahara</label><label class="block"><input type="radio" name="q11_4" value="correct"> Laksamana</label><label class="block"><input type="radio" name="q11_4" value="incorrect"> Hulubalang</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <div class="quiz-item mb-4">
-                                <p class="font-semibold text-gray-800">5. Siapakah nama bapa Hang Tuah?</p>
-                                <div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_5" value="incorrect"> Dang Merdu Wati</label><label class="block"><input type="radio" name="q11_5" value="incorrect"> Aria Putera</label><label class="block"><input type="radio" name="q11_5" value="correct"> Hang Mahmud</label></div><div class="quiz-feedback"></div>
-                            </div>
-                            <button class="quiz-check-btn mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Semak Jawapan</button>
-                        </div>
-                    </div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m10 10-4.5 4.5"></path><path d="m14.5 10 4.5 4.5"></path><path d="M12 12.5 9 17h6l-3-4.5z"></path></svg>Riwayat Hidup Hang Tuah</h3><p class="text-gray-700">Laksamana Melaka yang terkenal dari Kampung Sungai Duyung. Sahabatnya ialah Hang Jebat, Hang Kasturi, Hang Lekir dan Hang Lekiu. Dilantik menjadi laksamana selepas menyelamatkan bendahara. Pernah difitnah dan dihukum bunuh, tetapi diselamatkan oleh bendahara.</p></div></div>
+                    <div class="note-card"><div class="note-section"><h3 class="note-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Kualiti Diri & Peranan Hang Tuah</h3><p class="sub-title">Kualiti Diri Hang Tuah:</p><ul class="list-disc list-inside mt-2 text-gray-600"><li><b>Bijaksana:</b> Menguasai 12 bahasa.</li><li><b>Jujur & Amanah:</b> Menjalankan tugas dengan jujur.</li><li><b>Bertanggungjawab:</b> Menjaga keselamatan perairan Melaka.</li><li><b>Taat Setia:</b> Mentaati perintah sultan.</li><li><b>Berani:</b> Mengalahkan Taming Sari.</li><li><b>Mahir Bersilat.</b></li></ul><p class="sub-title mt-4">Peranan Hang Tuah:</p><p class="text-gray-600">Setia kepada Sultan, Ketua Angkatan Laut, Pengawal Sultan, dan menjaga keamanan perairan.</p></div></div>
+                    <div class="mt-8 p-6 rounded-lg shadow-inner quiz-container"><h3 class="text-2xl font-bold quiz-title mb-4">Jom Uji Minda!</h3><div class="quiz-container-inner"><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">1. Antara berikut, yang manakah BUKAN kualiti diri Hang Tuah?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_1" value="incorrect"> Taat Setia</label><label class="block"><input type="radio" name="q11_1" value="incorrect"> Berani</label><label class="block"><input type="radio" name="q11_1" value="correct"> Penderhaka</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">2. Berapakah jumlah bahasa yang dikuasai oleh Hang Tuah?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_2" value="incorrect"> 5</label><label class="block"><input type="radio" name="q11_2" value="correct"> 12</label><label class="block"><input type="radio" name="q11_2" value="incorrect"> 10</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">3. Siapakah sahabat Hang Tuah yang mengamuk kerana menyangka Hang Tuah telah dihukum bunuh?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_3" value="correct"> Hang Jebat</label><label class="block"><input type="radio" name="q11_3" value="incorrect"> Hang Lekir</label><label class="block"><input type="radio" name="q11_3" value="incorrect"> Hang Kasturi</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">4. Apakah jawatan Hang Tuah dalam pentadbiran Kesultanan Melayu Melaka?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_4" value="incorrect"> Bendahara</label><label class="block"><input type="radio" name="q11_4" value="correct"> Laksamana</label><label class="block"><input type="radio" name="q11_4" value="incorrect"> Hulubalang</label></div><div class="quiz-feedback"></div></div><div class="quiz-item mb-4"><p class="font-semibold text-gray-800">5. Siapakah nama bapa Hang Tuah?</p><div class="mt-2 space-y-1"><label class="block"><input type="radio" name="q11_5" value="incorrect"> Dang Merdu Wati</label><label class="block"><input type="radio" name="q11_5" value="incorrect"> Aria Putera</label><label class="block"><input type="radio" name="q11_5" value="correct"> Hang Mahmud</label></div><div class="quiz-feedback"></div></div><button class="quiz-check-btn mt-4 text-white font-bold px-5 py-2 rounded-lg shadow-md transition transform hover:scale-105">Semak Jawapan</button></div></div>
                 </div>
             </div>
         </main>
@@ -803,41 +209,36 @@
             const unitContents = document.querySelectorAll('.unit-content');
             const quizCheckBtns = document.querySelectorAll('.quiz-check-btn');
 
-            // Navigation handler
+            function switchUnit(unit) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                document.querySelector(`.nav-link[data-unit="${unit}"]`).classList.add('active');
+                unitContents.forEach(content => {
+                    if (content.id === `unit-${unit}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            }
+
             navLinks.forEach(link => {
                 link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const unit = this.getAttribute('data-unit');
-
-                    // Update active link
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-
-                    // Show correct content
-                    unitContents.forEach(content => {
-                        if (content.id === `unit-${unit}`) {
-                            content.classList.add('active');
-                        } else {
-                            content.classList.remove('active');
-                        }
-                    });
-                     // For mobile view, scroll to content
+                    switchUnit(unit);
                     if (window.innerWidth < 768) {
                         document.getElementById(`unit-${unit}`).scrollIntoView({ behavior: 'smooth' });
                     }
                 });
             });
 
-            // Quiz handler
             quizCheckBtns.forEach(button => {
                 button.addEventListener('click', function () {
-                    const quizContainer = this.parentElement;
+                    const quizContainer = this.closest('.quiz-container-inner');
                     const quizItems = quizContainer.querySelectorAll('.quiz-item');
-
                     quizItems.forEach(item => {
                         const selectedOption = item.querySelector('input[type="radio"]:checked');
                         const feedbackEl = item.querySelector('.quiz-feedback');
-
                         if (!selectedOption) {
                             feedbackEl.textContent = 'Sila pilih satu jawapan.';
                             feedbackEl.className = 'quiz-feedback incorrect';
@@ -853,10 +254,10 @@
                     });
                 });
             });
-
+            
+            switchUnit('1');
         });
     </script>
 </body>
 </html>
-
 
